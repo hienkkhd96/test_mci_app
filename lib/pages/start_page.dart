@@ -1,8 +1,8 @@
+import 'package:contera_pp/styles/texts.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -19,24 +19,31 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         child: Center(
-            child: Column(
+            child: ListView(
           children: [
             Image.asset(
               'assets/images/logo_mci_1.png',
-              width: 300,
               height: 500,
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                primary: Colors.red[400], // background
-                onPrimary: Colors.white, // foreground
-              ),
-              onPressed: () => {Navigator.pushNamed(context, '/sign-in')},
-              child: const Text(
-                'BẮT ĐẦU',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            Padding(
+              padding:
+                  const EdgeInsets.only(bottom: 100, left: 100, right: 100),
+              child: SizedBox(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    primary: Colors.red[400], // background
+                    onPrimary: Colors.white, // foreground
+                  ),
+                  onPressed: () => {Navigator.pushNamed(context, '/sign-in')},
+                  child: Text(
+                    'ĐĂNG NHẬP',
+                    style: AppStyles.h1.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
