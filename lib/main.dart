@@ -1,3 +1,5 @@
+import 'package:contera_pp/pages/signin_page.dart';
+import 'package:contera_pp/pages/start_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,57 +12,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // on the FirstScreen widget.
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/start': (context) => const MyHomePage(
+              title: "dinhhien",
+            ),
+        '/sign-in': (context) => const SignInPage(
+              title: "Sign In",
+            ),
+      },
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'DinhHien App'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage("assets/images/start.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-            child: Column(
-          children: [
-            Image.asset(
-              'assets/images/logo_mci_1.png',
-              width: 300,
-              height: 500,
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-                primary: Colors.red[400], // background
-                onPrimary: Colors.white, // foreground
-              ),
-              onPressed: () => {},
-              child: const Text(
-                'BẮT ĐẦU',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-              ),
-            ),
-          ],
-        )),
-      ),
     );
   }
 }
