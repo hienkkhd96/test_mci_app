@@ -2,6 +2,7 @@ import 'package:contera_pp/styles/colors.dart';
 import 'package:contera_pp/styles/icons.dart';
 import 'package:contera_pp/styles/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyAppBar extends StatefulWidget {
   final String? title;
@@ -26,7 +27,9 @@ class _MyAppBarState extends State<MyAppBar> {
                   borderRadius: BorderRadius.circular(100.0))),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, widget.router ?? "/sign-in");
+              widget.router == null
+                  ? Navigator.pop(context)
+                  : Get.toNamed(widget.router!);
             },
             child: const Icon(AppIcons.arrowBack)),
         SizedBox(

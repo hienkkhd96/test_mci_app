@@ -1,4 +1,7 @@
+import 'package:contera_pp/pages/enterotp_page.dart';
+import 'package:contera_pp/pages/forgot_pass.dart';
 import 'package:contera_pp/pages/signin_page.dart';
+import 'package:contera_pp/pages/signup_page.dart';
 import 'package:contera_pp/pages/start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +29,9 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/start': (context) => const MyHomePage(),
         '/sign-in': (context) => const SignInPage(),
+        '/sign-up': (context) => const SignUpPage(),
+        '/forgot-pass': (context) => const ForgotPass(),
+        '/enter-otp': (context) => const EnterOtpPage(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
