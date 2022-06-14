@@ -1,6 +1,6 @@
-import 'package:contera_pp/styles/colors.dart';
-import 'package:contera_pp/styles/texts.dart';
-import 'package:contera_pp/widgets/otp_input.dart';
+import 'package:mci/styles/colors.dart';
+import 'package:mci/styles/texts.dart';
+import 'package:mci/widgets/otp_input.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:contera_pp/styles/texts.dart';
+import 'package:mci/styles/texts.dart';
 import 'package:flutter/material.dart';
 
 class GetOutLineButon extends StatelessWidget {
@@ -28,7 +28,7 @@ class GetOutLineButon extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             primary: backgroundColor,
             minimumSize: const Size.fromHeight(40),
-            padding: const EdgeInsets.symmetric(vertical: 22)),
+            padding: const EdgeInsets.symmetric(vertical: 16)),
         onPressed: () => callbackOnpress(),
         child: Text(
           name ?? "OutlineButton",

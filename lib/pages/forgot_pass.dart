@@ -1,9 +1,9 @@
-import 'package:contera_pp/pages/enterotp_page.dart';
-import 'package:contera_pp/styles/colors.dart';
-import 'package:contera_pp/styles/texts.dart';
-import 'package:contera_pp/widgets/appbar.dart';
-import 'package:contera_pp/widgets/content_sign.dart';
-import 'package:contera_pp/widgets/form.dart';
+import 'package:mci/pages/enterotp_page.dart';
+import 'package:mci/styles/colors.dart';
+import 'package:mci/styles/texts.dart';
+import 'package:mci/widgets/appbar.dart';
+import 'package:mci/widgets/content_sign.dart';
+import 'package:mci/widgets/form.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPass extends StatelessWidget {

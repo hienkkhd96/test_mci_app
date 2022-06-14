@@ -1,6 +1,6 @@
-import 'package:contera_pp/styles/colors.dart';
-import 'package:contera_pp/styles/icons.dart';
-import 'package:contera_pp/styles/texts.dart';
+import 'package:mci/styles/colors.dart';
+import 'package:mci/styles/icons.dart';
+import 'package:mci/styles/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

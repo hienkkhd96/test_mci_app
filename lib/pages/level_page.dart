@@ -1,8 +1,12 @@
-import 'package:contera_pp/styles/colors.dart';
-import 'package:contera_pp/styles/texts.dart';
-import 'package:contera_pp/widgets/buttons/outlined_fullwidth.dart';
-import 'package:contera_pp/widgets/leading_icon.dart';
+import 'package:mci/const/enum.dart';
+import 'package:mci/controller/main_controler.dart';
+import 'package:mci/pages/signup_success.dart';
+import 'package:mci/styles/colors.dart';
+import 'package:mci/styles/texts.dart';
+import 'package:mci/widgets/buttons/outlined_fullwidth.dart';
+import 'package:mci/widgets/leading_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PickLevelPage extends StatefulWidget {
   const PickLevelPage({Key? key}) : super(key: key);
@@ -11,10 +15,9 @@ class PickLevelPage extends StatefulWidget {
   State<PickLevelPage> createState() => _PickLevelPageState();
 }
 
-enum StringLevelUser { junior, fresher, senior }
+MainController mainState = Get.put(MainController());
 
 class _PickLevelPageState extends State<PickLevelPage> {
-  StringLevelUser _levelUser = StringLevelUser.fresher;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,6 @@ class _PickLevelPageState extends State<PickLevelPage> {
               margin: const EdgeInsets.only(top: 10),
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: TextButton(
-                onPressed: () {},
                 child: Text(
                   'Skip',
                   style: AppStyles.h3.copyWith(
@@ -32,6 +34,7 @@ class _PickLevelPageState extends State<PickLevelPage> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
+                onPressed: () {},
               ),
             )
           ],
@@ -68,48 +71,102 @@ class _PickLevelPageState extends State<PickLevelPage> {
                     child: Column(
                       children: [
                         Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
-                              color: AppColors.lightColor,
+                              color: mainState.levelUser.value ==
+                                      StringLevelUser.fresher
+                                  ? AppColors.lightColor
+                                  : null,
                               border: Border.all(color: Colors.blueAccent),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(13))),
                           child: ListTile(
-                            title: const Text('Fresher'),
+                            onTap: () {
+                              setState(() {
+                                mainState.setlevelUser(StringLevelUser.fresher);
+                              });
+                            },
+                            title: Text(
+                              'Fresher',
+                              style: AppStyles.h3.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.textDarkColor),
+                            ),
                             leading: Radio<StringLevelUser>(
                               value: StringLevelUser.fresher,
-                              groupValue: _levelUser,
+                              groupValue: mainState.levelUser.value,
                               onChanged: (StringLevelUser? value) {
                                 setState(() {
-                                  _levelUser = value!;
+                                  mainState.setlevelUser(value!);
                                 });
                               },
                             ),
                           ),
                         ),
-                        ListTile(
-                          title: const Text('Junior'),
-                          leading: Radio<StringLevelUser>(
-                            overlayColor:
-                                MaterialStateProperty.all(AppColors.lightColor),
-                            value: StringLevelUser.junior,
-                            groupValue: _levelUser,
-                            onChanged: (StringLevelUser? value) {
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                              color: mainState.levelUser.value ==
+                                      StringLevelUser.junior
+                                  ? AppColors.lightColor
+                                  : null,
+                              border: Border.all(color: Colors.blueAccent),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(13))),
+                          child: ListTile(
+                            onTap: () {
                               setState(() {
-                                _levelUser = value!;
+                                mainState.setlevelUser(StringLevelUser.junior);
                               });
                             },
+                            title: Text('Junior',
+                                style: AppStyles.h3.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.textDarkColor)),
+                            leading: Radio<StringLevelUser>(
+                              overlayColor: MaterialStateProperty.all(
+                                  AppColors.lightColor),
+                              value: StringLevelUser.junior,
+                              groupValue: mainState.levelUser.value,
+                              onChanged: (StringLevelUser? value) {
+                                setState(() {
+                                  mainState.setlevelUser(value!);
+                                });
+                              },
+                            ),
                           ),
                         ),
-                        ListTile(
-                          title: const Text('Senior'),
-                          leading: Radio<StringLevelUser>(
-                            value: StringLevelUser.senior,
-                            groupValue: _levelUser,
-                            onChanged: (StringLevelUser? value) {
+                        Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                              color: mainState.levelUser.value ==
+                                      StringLevelUser.senior
+                                  ? AppColors.lightColor
+                                  : null,
+                              border: Border.all(color: Colors.blueAccent),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(13))),
+                          child: ListTile(
+                            onTap: () {
                               setState(() {
-                                _levelUser = value!;
+                                mainState.setlevelUser(StringLevelUser.senior);
                               });
                             },
+                            title: Text(
+                              'Senior',
+                              style: AppStyles.h3.copyWith(
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.textDarkColor),
+                            ),
+                            leading: Radio<StringLevelUser>(
+                              value: StringLevelUser.senior,
+                              groupValue: mainState.levelUser.value,
+                              onChanged: (StringLevelUser? value) {
+                                setState(() {
+                                  mainState.setlevelUser(value!);
+                                });
+                              },
+                            ),
                           ),
                         ),
                         GetOutLineButon(
@@ -120,8 +177,14 @@ class _PickLevelPageState extends State<PickLevelPage> {
                           textColor: AppColors.lightColor,
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
-                          callbackOnpress: () {},
-                        )
+                          callbackOnpress: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const SingupSuccess()),
+                                (route) => false);
+                          },
+                        ),
                       ],
                     ),
                   ),

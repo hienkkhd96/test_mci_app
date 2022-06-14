@@ -1,4 +1,4 @@
-import 'package:contera_pp/styles/texts.dart';
+import 'package:mci/styles/texts.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {

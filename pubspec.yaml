@@ -1,4 +1,4 @@
-name: contera_pp
+name: mci
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -31,6 +31,9 @@ dependencies:
     sdk: flutter
   get: ^4.6.5
   font_awesome_flutter: ^10.1.0
+  http: ^0.13.4
+  
+
 
 
   # The following adds the Cupertino Icons font to your application.

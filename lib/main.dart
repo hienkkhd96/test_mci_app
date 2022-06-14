@@ -1,20 +1,14 @@
-import 'package:contera_pp/pages/enterotp_page.dart';
-import 'package:contera_pp/pages/forgot_pass.dart';
-import 'package:contera_pp/pages/signin_page.dart';
-import 'package:contera_pp/pages/signup_page.dart';
-import 'package:contera_pp/pages/start_page.dart';
+import 'package:mci/pages/HomePages/courses_page.dart';
+import 'package:mci/pages/enterotp_page.dart';
+import 'package:mci/pages/forgot_pass.dart';
+import 'package:mci/pages/signin_page.dart';
+import 'package:mci/pages/signup_page.dart';
+import 'package:mci/pages/start_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-class MainController extends GetxController {
-  RxBool isLogin = false.obs;
-  void loginSuccess() {
-    isLogin.value = true;
-  }
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => const SignUpPage(),
         '/forgot-pass': (context) => const ForgotPass(),
         '/enter-otp': (context) => const EnterOtpPage(),
+        '/courses': (context) => const CoursesPage(),
       },
       title: 'Flutter Demo',
       theme: ThemeData(
