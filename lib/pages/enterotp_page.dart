@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:mci/styles/colors.dart';
 import 'package:mci/styles/texts.dart';
 import 'package:mci/widgets/otp_input.dart';

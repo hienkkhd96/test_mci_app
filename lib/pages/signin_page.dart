@@ -91,7 +91,9 @@ class _SignInPageState extends State<SignInPage> {
                         const EdgeInsets.symmetric(vertical: 10)),
                     backgroundColor:
                         MaterialStateProperty.all(AppColors.primaryColor)),
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed('/courses');
+                },
                 child: Text(
                   'Sign In',
                   style: AppStyles.h2.copyWith(fontWeight: FontWeight.bold),
