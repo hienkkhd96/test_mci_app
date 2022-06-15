@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:mci/fetch/get_course_list.dart';
-import 'package:mci/models/course_list.dart';
+import 'package:mci/oath2/oatth2.dart';
 import 'package:mci/styles/colors.dart';
 import 'package:mci/styles/images.dart';
 import 'package:mci/styles/texts.dart';
@@ -70,7 +70,7 @@ class _CoursesPageState extends State<CoursesPage> {
         actions: [
           InkWell(
             onTap: () {
-              Get.toNamed('/courses');
+              print(Oauth2ClientExample());
             },
             child: Container(
               margin: const EdgeInsets.only(top: 30, right: 10),

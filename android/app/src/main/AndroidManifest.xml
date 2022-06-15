@@ -27,14 +27,20 @@
             </intent-filter>
 
         </activity>
+        <activity android:name="com.linusu.flutter_web_auth.CallbackActivity" android:exported="true">
+            <intent-filter android:label="flutter_web_auth">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="my.test.app" />
+            </intent-filter>
+        </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <uses-permission android:name="android.permission.INTERNET" />
-        <!-- Required to fetch data from the internet. -->
-<uses-permission android:name="android.permission.INTERNET" />
-
     </application>
+        <!-- Required to fetch data from the internet. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
