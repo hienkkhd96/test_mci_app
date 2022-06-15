@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:mci/fetch/get_course_list.dart';
+import 'package:mci/models/course_list.dart';
 import 'package:mci/styles/colors.dart';
+import 'package:mci/styles/images.dart';
 import 'package:mci/styles/texts.dart';
 import 'dart:async';
 
@@ -39,7 +41,7 @@ class _CoursesPageState extends State<CoursesPage> {
         backgroundColor: AppColors.primaryColor,
         elevation: 4,
         toolbarHeight: 90,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             Container(
@@ -94,8 +96,8 @@ class _CoursesPageState extends State<CoursesPage> {
             child: CarouselSlider(
               carouselController: pageController,
               options: CarouselOptions(
-                height: 260.0,
-                viewportFraction: 0.8,
+                height: 230.0,
+                viewportFraction: 0.6,
                 enableInfiniteScroll: true,
                 reverse: false,
                 onPageChanged: (index, reason) {
@@ -152,15 +154,146 @@ class _CoursesPageState extends State<CoursesPage> {
               ],
             ),
           ),
-          // GridView.count(
-          //   crossAxisCount: 2,
-          //   primary: false,
-          //   physics: const NeverScrollableScrollPhysics(),
-          //   shrinkWrap: true,
-          //   children: [],
-          // )
+          FutureBuilder<List>(
+            future:
+                futureCourseList, // a previously-obtained Future<String> or null
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              List<Widget> children;
+              if (snapshot.hasData) {
+                children = renderCourseList(snapshot);
+              } else if (snapshot.hasError) {
+                children = <Widget>[
+                  const Icon(
+                    Icons.error_outline,
+                    color: Colors.red,
+                    size: 60,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Text('Error: ${snapshot.error}'),
+                  )
+                ];
+              } else {
+                children = <Widget>[
+                  const Center(
+                    child: SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ];
+              }
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: GridView.count(
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  crossAxisCount: 2,
+                  primary: false,
+                  shrinkWrap: true,
+                  children: children,
+                ),
+              );
+            },
+          ),
         ],
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: SizedBox(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                child: Image.asset(
+                  AppAssets.logoImage,
+                  width: 50,
+                ),
+              ),
+              InkWell(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.solidAddressCard),
+                    Text(
+                      "ECRM",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FloatingActionButton(
+                    focusElevation: 1,
+                    onPressed: () {},
+                    child: const Icon(FontAwesomeIcons.plus),
+                  )
+                ],
+              ),
+              InkWell(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.bullhorn),
+                    Text(
+                      "EMKT",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
+              ),
+              InkWell(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.users),
+                    Text(
+                      "EHRM",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
+  }
+
+  List<Widget> renderCourseList(AsyncSnapshot<List<dynamic>> snapshot) {
+    return <Widget>[
+      for (int i = 0; i < snapshot.data!.length; i++)
+        Card(
+          child: Column(
+            children: [
+              Container(
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(50)),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(15)),
+                  child: Image.network(
+                    snapshot.data![i].image,
+                    color: Colors.red,
+                    colorBlendMode: BlendMode.dstATop,
+                    fit: BoxFit.fitWidth,
+                    filterQuality: FilterQuality.low,
+                  ),
+                ),
+              ),
+              Text(
+                snapshot.data![i].title,
+                textAlign: TextAlign.center,
+                style: AppStyles.h4.copyWith(
+                    color: AppColors.textDarkColor,
+                    fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
+        )
+    ];
   }
 }
